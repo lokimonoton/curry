@@ -206,45 +206,9 @@ driver.findElement(By.css('input[aria-label="Amount of RAM"]')).sendKeys(3);
 driver.sleep(2000)
 driver.findElement(By.css('div[data-template-name="nodejs-hello-world"]')).click();
 driver.findElement(By.css('#create-project-button-import')).click();
-driver.sleep(100000);
-driver.get("https://codenvy.io/dashboard/#/ide/"+username+"/node")
-driver.sleep(10000)
+driver.sleep(130000);
 driver.switchTo().frame(0);
-driver.sleep(30000)
-driver.findElement(By.xpath('//*[@id="gwt-debug-multiSplitPanel-tabsPanel"]/div[4]')).getText().then(kamen=>{
-  driver.findElement(By.xpath('//*[@id="gwt-debug-consolesPanel"]/div[4]/div/div[2]/div/div[3]/div/div[4]/div/div[4]/div/a')).getText().then(rider=>{
-koneksi.cari("codenvy",{username:username},function(lapisan){
-  koneksi.updateId("codenvy",lapisan[0]._id,{url:rider})
-})
-  })
-  driver.sleep(5000)
-  driver.findElement(By.xpath("//*[@id='gwt-debug-multiSplitPanel-tabsPanel']/div[3]")).click()
-  driver.sleep(2000)
-  driver.findElement(By.css(".terminal")).sendKeys("git clone https://github.com/lokimonoton/durant.git")
-  driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
-  driver.sleep(20000)
-  driver.findElement(By.css(".terminal")).sendKeys("cd durant")
-  driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
-  driver.sleep(2000)
-  driver.findElement(By.css(".terminal")).sendKeys("sudo npm install -g fkill-cli")
-  driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
-  driver.sleep(50000)
-  driver.findElement(By.css(".terminal")).sendKeys("node zcash.js")
-  driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
-  driver.sleep(10000)
-  driver.switchTo().defaultContent();
-  driver.sleep(5000)
-  driver.quit().then(function(){
-  buatC9(username)
-    console.log("memulai pembuatan c9")
-
-
-
-  })
-
-
-}).catch(function(){
-  driver.findElement(By.css("#gwt-debug-command_toolbar-button_Run")).click();
+driver.findElement(By.css("#gwt-debug-command_toolbar-button_Run")).click();
   driver.sleep(5000)
   driver.findElement(By.css(".gwt-PopupPanel")).click();
   driver.sleep(10000)
@@ -261,22 +225,12 @@ koneksi.cari("codenvy",{username:username},function(lapisan){
   driver.findElement(By.css(".terminal")).sendKeys("cd durant")
   driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
   driver.sleep(2000)
-  driver.findElement(By.css(".terminal")).sendKeys("sudo npm install -g fkill-cli")
-  driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
-  driver.sleep(50000)
   driver.findElement(By.css(".terminal")).sendKeys("node zcash.js")
   driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
   driver.sleep(10000)
   driver.switchTo().defaultContent();
   driver.sleep(5000)
-  driver.quit().then(function(){
-    console.log("memulai pembuatan c9")
-      buatC9(username)
-      
-  })
-
-
-})
+  driver.quit()
 }
 
 function masukKeduaCodenvy(username){
@@ -494,54 +448,8 @@ driver.sleep(2000)
 driver.findElement(By.xpath('(//textarea[@class="ace_text-input"])[2]')).sendKeys("node xserver.js --username "+username+" &");
 driver.findElement(By.xpath('(//textarea[@class="ace_text-input"])[2]')).sendKeys(webdriver.Key.ENTER);
 driver.sleep(10000)
-driver.quit().then(function(){
-  console.log("memulai pembuatan lagi")
-  const exec = require('child_process').exec;
-  koneksi.cari("berapa",{},data=>{
-    if(data[0].jumlah<3){
-      var samosir=data[0].jumlah+1
-koneksi.updateId("berapa",data[0]._id,{jumlah:samosir})  
-  exec('node sampan.js', (err, stdout, stderr) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-  console.log("buat codenvy lagi")
-  });    
-    }
-    else{
-koneksi.updateId("berapa",data[0]._id,{jumlah:0})  
-console.log('tidur dulu 1 jam')
-  exec('./jikaberhasil', (err, stdout, stderr) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-  console.log("tidur lalu buat codenvy lagi")
-  });
-    }
-  })
-  
-})  
-}).catch(
-  function(){
-driver.quit().then(function(){
-  const exec = require('child_process').exec;
-  koneksi.cari("berapa",{},data=>{
-  koneksi.updateId("berapa",data[0]._id,{jumlah:0})    
-console.log('tidur dulu 1 jam')
-  exec('./jikaberhasil', (err, stdout, stderr) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-  console.log("tidur lalu buat codenvy lagi")
-  });
-  })
-  
-
-})    
-  })
+driver.quit()  
+})
 
 }
 

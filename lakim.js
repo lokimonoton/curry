@@ -35,6 +35,8 @@ app.post('/facebook', jsonParser, function (req, res) {
   console.log("berhasil")
   var cheerio = require('cheerio')
   var $ = cheerio.load(req.body.HtmlBody)
+  // console.log(req.body.HtmlBody)
+  // console.log("text"+req.body.TextBody)
   if($('a').eq(0).attr('href')!="https://codenvy.io/dashboard"){
   koneksi.cari("codenvy",{},data=>{
     console.log($('a').eq(0).attr('href'))

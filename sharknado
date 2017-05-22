@@ -1,0 +1,1 @@
+xvfb-run -a node perang.js --buatc9 $1

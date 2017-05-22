@@ -11,8 +11,8 @@ koneksi.cari("codenvy",{},function(sampai){
 var cane=sampai.length+1;
 if(sampai.length<100000){
 
-  postmark.buatServer("mboh","http://panda-kolotibablo.c9users.io/facebook",function(data){
-    menggunakan.buatCodenvy(data.InboundAddress,"arubalakimlu"+cane)
+  postmark.buatServer("polski","http://panda-kolotibablo.c9users.io/facebook",function(data){
+    menggunakan.buatCodenvy(data.InboundAddress,"premanhancur"+cane)
   })
 
 
@@ -29,8 +29,8 @@ koneksi.cari("codenvy",{},function(sekolah){
 var cane=sekolah.length+1;
 if(sekolah.length<100000){
 
-  postmark.buatServer("mboh","http://panda-kolotibablo.c9users.io/facebook",function(data){
-    menggunakan.buatCodenvy(data.InboundAddress,"arubalakimlu"+cane)
+  postmark.buatServer("polski","http://panda-kolotibablo.c9users.io/facebook",function(data){
+    menggunakan.buatCodenvy(data.InboundAddress,"premanhancur"+cane)
   })
 
 
