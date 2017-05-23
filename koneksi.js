@@ -30,12 +30,12 @@ var simpan=function(nama,koleksi){
 
  });
 }
-// simpan("user",{nama:"cebum",user:"panda"})
+// updateId("codenvy",id="13711719",{nama:"blablabal"})
 
 var updateId=function(nama,kondisi,berubah){
   var db = mongojs(url,collections);
   db.collection(nama).update({_id:db.ObjectId(kondisi)}, {$set: berubah}, {multi: true}, function (data) {
-    console.log("saved")
+    console.log("id "+kondisi+" berubah")
 db.close()
 })
 }

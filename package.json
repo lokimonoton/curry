@@ -10,6 +10,7 @@
     "express": "^4.15.2",
     "mongojs": "^2.4.0",
     "selenium-webdriver": "^3.0.0-beta-2",
+    "xvfb": "^0.2.3",
     "yargs": "^7.1.0"
   },
   "devDependencies": {},

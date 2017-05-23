@@ -16,6 +16,63 @@ if(argv.delete){
 if(argv.masukcodenvy){
   masukCodenvy(argv.masukcodenvy)
 }
+if(argv.deletecodenvy){
+  deleteCodenvy(argv.deletecodenvy)
+}
+function deleteCodenvy(username){
+  var webdriver = require('selenium-webdriver'),
+        By = webdriver.By,
+        until = webdriver.until;
+
+    var driver = new webdriver.Builder()
+        .forBrowser('chrome')
+        // .usingServer('http://localhost:4444/wd/hub')
+        .build();
+    driver.manage().window().setSize(1000, 1000);
+    driver.get('https://www.codenvy.io/');
+  driver.findElement(By.css('#username')).sendKeys(username);
+  driver.findElement(By.css('input[type="password"]')).sendKeys("plokotoklucu1");
+  driver.findElement(By.css('input[type="password"]')).sendKeys(webdriver.Key.ENTER);
+
+  driver.sleep(10000);
+  driver.get("https://codenvy.io/dashboard/#/workspace/"+username+"/node?page=Settings")
+  driver.sleep(10000)
+  driver.findElement(By.css('button[ng-click="workspaceDetailsController.deleteWorkspace($event)"]')).click();
+  driver.sleep(10000)
+  driver.findElement(By.css('button[ng-click="cheConfirmDialogController.hide()"]'))
+  .then(function(){
+    driver.findElement(By.css('button[ng-click="cheConfirmDialogController.hide()"]')).click()
+    driver.sleep(10000)
+    driver.get('https://codenvy.io/dashboard/#/account');
+    driver.sleep(10000)
+    driver.findElement(By.xpath('(//md-tab-item[@tabindex="-1"])[2]')).click();
+    driver.sleep(2000)
+    driver.findElement(By.css('button[ng-click="accountDeleteController.deleteAccount()"]')).click()
+    driver.sleep(2000)
+    driver.findElement(By.css('button[ng-click="cheConfirmDialogController.hide()"]')).click()
+    driver.sleep(10000)
+    driver.findElement(By.css('h4')).getText().then(function(data){
+      console.log(data)
+    })
+    driver.quit()
+  })
+  .catch(function(){
+    driver.sleep(10000)
+    driver.get('https://codenvy.io/dashboard/#/account');
+    driver.sleep(10000)
+    driver.findElement(By.xpath('(//md-tab-item[@tabindex="-1"])[2]')).click();
+    driver.sleep(2000)
+    driver.findElement(By.css('button[ng-click="accountDeleteController.deleteAccount()"]')).click()
+    driver.sleep(2000)
+    driver.findElement(By.css('button[ng-click="cheConfirmDialogController.hide()"]')).click()
+    driver.sleep(10000)
+    driver.findElement(By.css('h4')).getText().then(function(data){
+      console.log(data)
+    })
+    driver.quit()
+  })
+
+}
 function buatCodenvy(email,username){
 var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
@@ -27,19 +84,16 @@ var driver = new webdriver.Builder()
     .build();
 driver.manage().window().setSize(1000, 1000);
 driver.get('https://www.codenvy.io');
+driver.sleep(10000)
 driver.findElement(By.id('signUp')).click();
+driver.sleep(5000)
 driver.findElement(By.css('input.required.email')).sendKeys(email);
+driver.sleep(5000)
 driver.findElement(By.css('input.required.user-name')).sendKeys(username);
 driver.sleep(5000)
 driver.findElement(By.css('input.required.user-name')).sendKeys(webdriver.Key.ENTER);
 driver.sleep(5000)
-driver.takeScreenshot().then(
-    function(image, err) {
-        require('fs').writeFile('out1.png', image, 'base64', function(err) {
-            console.log(err);
-        });
-    }
-);
+
 driver.quit().then(function(){
   console.log("menyimapn username ke dataabse")
   koneksi.simpan("codenvy",{username:username})
@@ -172,7 +226,7 @@ driver.findElement(By.xpath('//*[@id="employer"]')).sendKeys("lakoms")
 driver.sleep(5000)
 driver.findElement(By.xpath('//*[@id="profileForm"]/span/div[6]/input')).click()
 driver.sleep(10000)
-   driver.get('https://www.codenvy.io/dashboard');
+   driver.get('https://www.codenvy.io/dashboard')
   driver.sleep(15000);
   driver.get('https://codenvy.io/dashboard/#/account');
   driver.sleep(10000);
@@ -206,7 +260,7 @@ driver.findElement(By.css('input[aria-label="Amount of RAM"]')).sendKeys(3);
 driver.sleep(2000)
 driver.findElement(By.css('div[data-template-name="nodejs-hello-world"]')).click();
 driver.findElement(By.css('#create-project-button-import')).click();
-driver.sleep(130000);
+driver.sleep(200000);
 driver.switchTo().frame(0);
 driver.findElement(By.css("#gwt-debug-command_toolbar-button_Run")).click();
   driver.sleep(5000)
@@ -214,7 +268,7 @@ driver.findElement(By.css("#gwt-debug-command_toolbar-button_Run")).click();
   driver.sleep(10000)
   driver.findElement(By.xpath('//*[@id="gwt-debug-consolesPanel"]/div[4]/div/div[2]/div/div[3]/div/div[4]/div/div[4]/div/a')).getText().then(rider=>{
     koneksi.cari("codenvy",{username:username},function(lapisan){
-      koneksi.updateId("codenvy",lapisan[0]._id,{url:rider})
+      koneksi.updateId("codenvy",lapisan[lapisan.length-1]._id,{url:rider})
     })
 
   })
@@ -230,7 +284,20 @@ driver.findElement(By.css("#gwt-debug-command_toolbar-button_Run")).click();
   driver.sleep(10000)
   driver.switchTo().defaultContent();
   driver.sleep(5000)
-  driver.quit()
+  driver.quit().then(function(){
+    koneksi.cari("codenvy",{},data=>{
+      console.log("buat ke"+data.length)
+    })
+    console.log('buat lagi codenvy')
+    const exec = require('child_process').exec;
+  exec('node sampan.js --buat penasaranluculakim', (err, stdout, stderr) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+  console.log("lanjut ke email")
+  });
+  })
 }
 
 function masukKeduaCodenvy(username){
@@ -454,7 +521,7 @@ driver.quit()
 }
 
 function masukC9(projectName){
-  var webdriver = require('selenium-webdriver'),
+   var webdriver = require('selenium-webdriver'),
       By = webdriver.By,
       until = webdriver.until;
 
@@ -474,6 +541,8 @@ driver.get("https://ide.c9.io/kolotibablo/"+projectName)
   driver.findElement(By.xpath('//*[@id="q9"]/div[2]/div/div/div/textarea')).sendKeys(webdriver.Key.ENTER);
   driver.sleep(10000)
   driver.quit()
+
+  
 }
 
 

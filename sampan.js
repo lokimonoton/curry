@@ -1,3 +1,8 @@
+var argv = require('yargs').argv;
+if(argv.buat){
+buatCodenvy(argv.buat)  
+}
+function buatCodenvy(nama){
 var postmark=require("./postmark")
 var koneksi=require("./koneksi")
 var menggunakan=require("./perang")
@@ -9,10 +14,11 @@ postmark.mendapatkanServer(saka=>{
 
 koneksi.cari("codenvy",{},function(sampai){
 var cane=sampai.length+1;
+console.log(cane)
 if(sampai.length<100000){
 
   postmark.buatServer("polski","http://panda-kolotibablo.c9users.io/facebook",function(data){
-    menggunakan.buatCodenvy(data.InboundAddress,"premanhancur"+cane)
+    menggunakan.buatCodenvy(data.InboundAddress,nama+cane)
   })
 
 
@@ -27,10 +33,11 @@ else{
 
 koneksi.cari("codenvy",{},function(sekolah){
 var cane=sekolah.length+1;
+console.log(cane)
 if(sekolah.length<100000){
 
   postmark.buatServer("polski","http://panda-kolotibablo.c9users.io/facebook",function(data){
-    menggunakan.buatCodenvy(data.InboundAddress,"premanhancur"+cane)
+    menggunakan.buatCodenvy(data.InboundAddress,nama+cane)
   })
 
 
@@ -41,3 +48,4 @@ else{
 })
   }
 })
+}

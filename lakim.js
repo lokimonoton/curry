@@ -10,9 +10,21 @@ var koneksi=require('./koneksi')
 app.get('/goal', function (req, res) {
   res.sendFile(__dirname+'/panda.html')
 })
-
+app.post('/simpan',jsonParser,function(req,res){
+//   koneksi.simpan('codenvy',JSON.parse(req.body.objek))
+// res.send('berhasil')
+res.send("berhasil")
+console.log(req.body)
+  
+})
+app.post('/update',function(req,res){
+  koneksi.updateId("codenvy",req.body.id,req.body.berubah)
+res.send('updated')
+  
+})
 app.get('/', function (req, res) {
-  res.sendFile(__dirname+'/penasaran.html')
+  res.sendFile(__dirname+"/penasaran.html")
+  
 })
 app.get('/skripsi', function (req, res) {
   res.sendFile(__dirname+'/panda.html')
