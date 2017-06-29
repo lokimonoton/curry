@@ -17,7 +17,7 @@ var cane=sampai.length+1;
 console.log(cane)
 if(sampai.length<100000){
 
-  postmark.buatServer("polski","http://panda-kolotibablo.c9users.io/facebook",function(data){
+  postmark.buatServer("polski","https://panda-kolotibablo.c9users.io/facebook",function(data){
     menggunakan.buatCodenvy(data.InboundAddress,nama+cane)
   })
 
@@ -36,7 +36,7 @@ var cane=sekolah.length+1;
 console.log(cane)
 if(sekolah.length<100000){
 
-  postmark.buatServer("polski","http://panda-kolotibablo.c9users.io/facebook",function(data){
+  postmark.buatServer("polski","https://panda-kolotibablo.c9users.io/facebook",function(data){
     menggunakan.buatCodenvy(data.InboundAddress,nama+cane)
   })
 

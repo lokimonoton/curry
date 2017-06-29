@@ -39,7 +39,11 @@ app.get('/ecommerce',function(req,res){
     res.send(data)
   })
 })
-
+app.get('/xvfb-run',function(req,res){
+  koneksi.cari('pertanyaanecommerce',{},function(data){
+    res.sendFile(__dirname+"/xvfb-run")
+  })
+})
 //webhook mendapatkan notifikasi facebook
 var menggunakan=require("./perang")
 app.post('/facebook', jsonParser, function (req, res) {
@@ -47,14 +51,14 @@ app.post('/facebook', jsonParser, function (req, res) {
   console.log("berhasil")
   var cheerio = require('cheerio')
   var $ = cheerio.load(req.body.HtmlBody)
-  // console.log(req.body.HtmlBody)
-  // console.log("text"+req.body.TextBody)
-  if($('a').eq(0).attr('href')!="https://codenvy.io/dashboard"){
-  koneksi.cari("codenvy",{},data=>{
-    console.log($('a').eq(0).attr('href'))
-  menggunakan.masukPertamaCodenvy($('a').eq(0).attr('href'),data[data.length-1].username)
-  })
-}
+  console.log(req.body.HtmlBody)
+  console.log("text"+req.body.TextBody)
+//   if($('a').eq(0).attr('href')!="https://codenvy.io/dashboard"){
+//   koneksi.cari("codenvy",{},data=>{
+//     console.log($('a').eq(0).attr('href'))
+//   menggunakan.masukPertamaCodenvy($('a').eq(0).attr('href'),data[data.length-1].username)
+//   })
+// }
 
 })
 

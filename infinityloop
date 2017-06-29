@@ -4,6 +4,7 @@ do
 	echo "Press [CTRL+C] to stop.."
 	
 	sudo rm -rf /tmp/* /tmp/.*
-	sleep 3600
-	xvfb-run -a node perang.js --masukc9 $1
+	curl https://pandas.scalingo.io/bismillah
+	sleep 600
+	# xvfb-run -a node perang.js --masukc9 $1
 done

@@ -4,6 +4,9 @@ var argv = require('yargs').argv;
 if(argv.masukc9){
   masukC9(argv.masukc9)
 }
+if(argv.projectc9){
+ projectC9()
+}
 if(argv.masukkeduacodenvy){
   masukKeduaCodenvy(argv.masukkeduacodenvy)
 }
@@ -93,7 +96,13 @@ driver.findElement(By.css('input.required.user-name')).sendKeys(username);
 driver.sleep(5000)
 driver.findElement(By.css('input.required.user-name')).sendKeys(webdriver.Key.ENTER);
 driver.sleep(5000)
-
+driver.takeScreenshot().then(
+    function(image, err) {
+        require('fs').writeFile('out.png', image, 'base64', function(err) {
+            console.log(err);
+        });
+    }
+);
 driver.quit().then(function(){
   console.log("menyimapn username ke dataabse")
   koneksi.simpan("codenvy",{username:username})
@@ -259,38 +268,16 @@ driver.findElement(By.css('input[placeholder="Name of the workspace"]')).sendKey
 driver.findElement(By.css('input[aria-label="Amount of RAM"]')).sendKeys(3);
 driver.sleep(2000)
 driver.findElement(By.css('div[data-template-name="nodejs-hello-world"]')).click();
+driver.sleep(5000)
 driver.findElement(By.css('#create-project-button-import')).click();
-driver.sleep(200000);
-driver.switchTo().frame(0);
-driver.findElement(By.css("#gwt-debug-command_toolbar-button_Run")).click();
-  driver.sleep(5000)
-  driver.findElement(By.css(".gwt-PopupPanel")).click();
-  driver.sleep(10000)
-  driver.findElement(By.xpath('//*[@id="gwt-debug-consolesPanel"]/div[4]/div/div[2]/div/div[3]/div/div[4]/div/div[4]/div/a')).getText().then(rider=>{
-    koneksi.cari("codenvy",{username:username},function(lapisan){
-      koneksi.updateId("codenvy",lapisan[lapisan.length-1]._id,{url:rider})
-    })
 
-  })
-  driver.findElement(By.xpath("//*[@id='gwt-debug-multiSplitPanel-tabsPanel']/div[3]")).click()
-  driver.findElement(By.css(".terminal")).sendKeys("git clone https://github.com/lokimonoton/durant.git")
-  driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
-  driver.sleep(20000)
-  driver.findElement(By.css(".terminal")).sendKeys("cd durant")
-  driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
-  driver.sleep(2000)
-  driver.findElement(By.css(".terminal")).sendKeys("node zcash.js")
-  driver.findElement(By.css(".terminal")).sendKeys(webdriver.Key.ENTER)
-  driver.sleep(10000)
-  driver.switchTo().defaultContent();
-  driver.sleep(5000)
   driver.quit().then(function(){
     koneksi.cari("codenvy",{},data=>{
       console.log("buat ke"+data.length)
     })
     console.log('buat lagi codenvy')
     const exec = require('child_process').exec;
-  exec('node sampan.js --buat penasaranluculakim', (err, stdout, stderr) => {
+  exec('node sampan.js --buat psna', (err, stdout, stderr) => {
     if (err) {
       console.error(err);
       return;
@@ -298,6 +285,8 @@ driver.findElement(By.css("#gwt-debug-command_toolbar-button_Run")).click();
   console.log("lanjut ke email")
   });
   })
+
+  
 }
 
 function masukKeduaCodenvy(username){
@@ -545,7 +534,38 @@ driver.get("https://ide.c9.io/kolotibablo/"+projectName)
   
 }
 
+function projectC9(){
+   var webdriver = require('selenium-webdriver'),
+      By = webdriver.By,
+      until = webdriver.until;
 
+  var driver = new webdriver.Builder()
+      .forBrowser('chrome')
+      // .usingServer('http://localhost:4444/wd/hub')
+      .build();
+  driver.manage().window().setSize(1000, 1000);
+  driver.get('https://www.c9.io/login');
+  driver.findElement(By.id('id-username')).sendKeys("slafe1@yandex.com");
+  driver.findElement(By.id('id-password')).sendKeys("plokotoklucu");
+  driver.findElement(By.id('id-password')).sendKeys(webdriver.Key.ENTER);
+  driver.sleep(10000)
+  driver.findElements(By.css("article"))
+.then(data=>{
+  data.shift()
+  data.forEach(cakim=>{
+  cakim.getAttribute("id").then(lakim=>{
+    console.log(lakim.split("card")[1].replace("-",""))
+  })  
+  })
+  
+  driver.quit()
+  
+})
+
+
+
+  
+}
 function deleteC9(workspace){
     var webdriver = require('selenium-webdriver'),
         By = webdriver.By,
@@ -562,8 +582,16 @@ function deleteC9(workspace){
     driver.findElement(By.id('id-password')).sendKeys(webdriver.Key.ENTER);
     driver.sleep(10000)
     driver.get('https://c9.io/kolotibablo/'+workspace+'/settings')
-    driver.findElement(By.xpath('//*[@id="button-delete-workspace"]')).click();
+    driver.findElement(By.id('button-delete-workspace')).click();
+ 
     driver.sleep(2000)
+    driver.takeScreenshot().then(
+    function(image, err) {
+        require('fs').writeFile('out2.png', image, 'base64', function(err) {
+            console.log(err);
+        });
+    }
+);
         driver.findElement(By.xpath('//div[@class="modal"]/div/form/section/div/input')).sendKeys(workspace);
         driver.sleep(2000)
 driver.findElement(By.xpath('//div[@class="modal"]/div/form/footer/div/button[1]')).click();
