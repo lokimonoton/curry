@@ -272,6 +272,8 @@ driver.sleep(5000)
 driver.findElement(By.css('#create-project-button-import')).click();
 
   driver.quit().then(function(){
+    
+  setInterval(function(){
     koneksi.cari("codenvy",{},data=>{
       console.log("buat ke"+data.length)
     })
@@ -284,6 +286,7 @@ driver.findElement(By.css('#create-project-button-import')).click();
     }
   console.log("lanjut ke email")
   });
+  },600000)
   })
 
   
