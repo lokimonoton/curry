@@ -516,11 +516,13 @@ function masukC9(projectName){
    var webdriver = require('selenium-webdriver'),
       By = webdriver.By,
       until = webdriver.until;
+var chrome = require("selenium-webdriver/chrome");
 
-  var driver = new webdriver.Builder()
-      .forBrowser('chrome')
-      // .usingServer('http://localhost:4444/wd/hub')
-      .build();
+var options = new chrome.Options();
+options.setChromeBinaryPath("chrome-linux/chrome");
+options.addArguments(["--no-sandbox"]);
+var driver = new webdriver.Builder().
+withCapabilities(options.toCapabilities()).build();
   driver.manage().window().setSize(1000, 1000);
   driver.get('https://www.c9.io/login');
   driver.findElement(By.id('id-username')).sendKeys("slafe1@yandex.com");
