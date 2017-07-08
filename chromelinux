@@ -1,3 +1,4 @@
+sudo apt-get install libxi6 libgconf-2-4
 #!/bin/bash
 # source: http://askubuntu.com/a/64396/174460
 CHROMIUM_ROOT="http://commondatastorage.googleapis.com/chromium-browser-snapshots/Linux_x64"

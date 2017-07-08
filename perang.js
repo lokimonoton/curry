@@ -519,7 +519,7 @@ function masukC9(projectName){
 var chrome = require("selenium-webdriver/chrome");
 
 var options = new chrome.Options();
-options.setChromeBinaryPath("chrome-linux/chrome");
+options.setChromeBinaryPath("/usr/bin/chromium-browser");
 options.addArguments(["--no-sandbox"]);
 var driver = new webdriver.Builder().
 withCapabilities(options.toCapabilities()).build();
