@@ -4,7 +4,7 @@ do
 	echo "Press [CTRL+C] to stop.."
 	
 	sudo rm -rf /tmp/* /tmp/.*
-	xvfb-run -a node perang.js --masukc9 joki
+	xvfb-run -a node perang.js --masukc9 skripsi2
 	
 	
 done

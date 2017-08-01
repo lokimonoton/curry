@@ -1,5 +1,5 @@
 //var url = 'mongodb://panda:1234@ds135800.mlab.com:35800/panda';
-var url = 'mongodb://localhost:27017/panda';
+var url = 'mongodb://ec2-52-15-181-63.us-east-2.compute.amazonaws.com:27017/';
 var collections = []
 var mongojs=require("mongojs")
 var pencarian=function(nama,koleksi,fungsi){
