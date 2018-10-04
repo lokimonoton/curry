@@ -6,7 +6,7 @@
     ----------------------------------------------------------------- 
 
 
-Hi there! Welcome to Cloud9 IDE!
+## Hi there! Welcome to Cloud9 IDE!
 
 To get you started, we included a small hello world application.
 
@@ -15,6 +15,19 @@ To get you started, we included a small hello world application.
 2) Click on the Preview button to open a live preview pane
 
 3) Make some changes to the file, save, watch the preview, and have fun!
+
+## مرحباً! مرحبا بكم في Cloud9 IDE!
+مرحباً! مرحبا بكم في Cloud9 IDE!
+
+لتبدأ ، قمنا بتضمين تطبيق عالمي صغير.
+
+افتح ملف hello-world.html
+
+انقر على زر معاينة لفتح جزء المعاينة المباشرة
+
+قم بإجراء بعض التغييرات على الملف وحفظ ومشاهدة المعاينة والحصول على المتعة!
+
+الترميز سعيدة! فريق Cloud9 IDE
 
 Happy coding!
 The Cloud9 IDE team
